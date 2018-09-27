@@ -1,0 +1,254 @@
+\documentclass[9pt,twocolumn]{article}
+
+\usepackage[margin=0.8in,bottom=1.25in,columnsep=.4in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{color}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=Bash,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{
+	Computational Data Science
+}
+
+\author{Joel Huang}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Entity Relationship Diagrams \& SQL}
+
+
+
+\section{Lab: Data Handling in Unix}
+
+\subsection*{Previewing data}
+Raw data can be fairly large. We might want to examine the dataset's structure without opening it in a special program or text editor, which could take a long time and large amounts of memory.
+
+\subsubsection*{Preview all - \lstinline{cat}}
+Short for con\textbf{cat}enate. Sequentially reads file(s) and writes them to \lstinline{stdout}. If redirection \lstinline{>} is used, then output is written to the specified file. \lstinline{>} is used to write to a file and \lstinline{>>} is used to append to a file.
+\begin{lstlisting}
+cat file1.txt
+cat file1.txt file2.txt > newcombinedfile.txt
+cat >newfile.txt
+cat -n file1.txt file2.txt > newnumberedfile.txt
+cat file1.txt >> file2.txt
+cat file1.txt file2.txt file3.txt | sort > test4
+\end{lstlisting}
+
+\subsubsection*{Preview some - \lstinline{head, tail}}
+Use \lstinline{head} or \lstinline{tail} to preview the head or tail of the data. Remember to supply the flags:
+\begin{lstlisting}
+-n  Number of lines
+-B  Display number of lines before
+-A  Display number of lines after
+\end{lstlisting}
+
+\subsection*{Searching - \lstinline{grep}}
+\begin{lstlisting}
+-E  Use extended regular expression syntax
+-o  Output a matching segment of each line only
+-n  Print the line number of each matched line
+-C  Show a number of context lines too
+\end{lstlisting}
+
+
+\begin{lstlisting}
+.   Matches any character.
+*   Matches zero or more instances of the preceding character.
++   Matches one or more instances of the preceding character.
+[]  Matches any of the characters within the brackets.
+()  Creates a sub-expression that can be combined to make more complicated expressions.
+|   OR operator; (www|ftp) matches either 'www' or 'ftp'.
+^   Matches the beginning of a line.
+$   Matches the end of the line.
+\   Escapes the following character. Since . matches any character, to match a literal period you would need to use \..
+\end{lstlisting}
+%\subsection*{Replacing}
+%\subsection*{Previewing}
+
+
+
+
+\section{Big Data, Hadoop, \& MapReduce}
+\section{Lab: MapReduce \& Hadoop}
+
+\subsection*{Big Idea: Mappers \& Reducers}
+\section{Counting Relative Frequencies}
+\subsection*{Big Idea: Approximate probabilities by counting occurrences in the data}
+\subsubsection*{k-Nearest Neighbours}
+A way to measure similarity between different data points, through determining similarity values or distances. Classification with k-NN is straightforward, but sensitive to the value of $k$, potentially computationally expensive (but can be sped up using kd-tree), and takes memory to store all data points.
+
+\subsubsection*{Decision trees \& Random Forests}
+Each feature represents an opportunity for branching. Decision trees are inexpensive and explainable, but prone overfitting withouot pruning
+To prevent overfitting, use Random forests-ensemble approach that aggregates decision trees's outputs via a majority voting system
+
+\subsubsection*{Naive Bayes for classification}
+\begin{lstlisting}
+Assumption: Conditional independence
+\end{lstlisting}
+\begin{equation}
+	P(x_1, x_2, \mathellipsis, x_n\,|\,Y) = P(x_1\,|\,Y)\cdot P(x_2\,|\,Y)\cdot\mathellipsis\
+\end{equation}
+We are trying to find the most likely class given an observation
+Maximum
+Most likely class Y given feature set X
+\begin{equation}
+	y_{MAP} = \argmax\,P(Y\,|\, x_1, x_2, \mathellipsis, x_m)
+\end{equation}
+\begin{equation}
+	= \argmax\,\frac{P(X\,|\,Y)\,P(Y)}{P(X)}
+\end{equation}
+In equation (2), we're comparing the $\argmax$ of $P(Y=0\,|\,X)$ and $P(Y=1\,|\,X)$. Therefore we can cancel the constant denominator $P(X)$:
+\begin{equation}
+	= \argmax\,P(X\,|\,Y)\,P(Y)
+\end{equation}
+Next, we need to find $P(X\,|\,Y)$ and $P(Y)$.
+
+\paragraph*{Count the prior probability $P(Y)$}
+Class labels are $Y\in\{0,1\}$. Therefore, for a dataset with $n$ labels,
+\begin{equation}
+	P(Y=0) = \frac{n_{Y=0}}{n}
+\end{equation}
+\begin{equation}
+	P(Y=1) = \frac{n_{Y=1}}{n}
+\end{equation}
+In other words, there are $n_{Y=1}$ out of $n$ occurrences of label $Y$ having value 1.
+\paragraph*{Estimate $P(X\,|\,Y=0)$ and $P(X\,|\,Y=1)$}
+Since we have assumed conditional independence of $X$ given classes $Y$ (1),
+\begin{equation}
+	P(x_i\,|\,Y=0) = \frac{|x_{i,Y=0}|}{n_{Y=0}}
+\end{equation}
+We are counting the probability (occurrences in the dataset) of feature $x_i$ given $Y=0$. Find all the rows where $Y=0$ and count the occurrences of feature $x_i$. Repeat this for $Y=1$.
+
+\paragraph*{Final comparison ($\argmax$)}
+Now we have pairs $P(Y=0)$, $P(X\,|\,Y=0)$, and $P(Y=1)$, $P(X\,|\,Y=1)$. Multiply the pairs as in equation (4)	and take the $max$ of the two.
+
+\subsubsection*{Naive Bayes for word counting}
+\begin{lstlisting}
+Assumptions: Conditional independence, irrelevance of word order
+\end{lstlisting}
+We want to predict a class for a given sentence, for example, ``good'' for the sentence ``love the burgers here, delicious and filling''. We can estimate the class $c$ using Naive Bayes,
+\begin{equation}
+	c = \argmax	_{c_i\in C} P(c_i) \prod_{w_j\in W} P(w_j\,|\,c_i)
+\end{equation}
+For a set of documents $D$, words $W$, and classes $C$, the probability of class $c_i$ is simply the number of occurrences of $c_i$ in document $D$.
+
+\begin{equation}
+	P(c_i) = \frac{|c_i|}{|D|}
+\end{equation}
+The probability of word $w_1$ given class $c_i$ is also simply the number of occurrences of word $w_1$ in sentences with class $c_i$, divided by the probability of class $c_i$.
+\begin{equation}
+\begin{split}
+	P(w_1\,|\,c_i) = \frac{P(w_1,c_i)}{P(c_i)}\\
+	= \frac{count(w_1,c_i)}{\sum_{w_j\in W}count(w_j,c_i)}
+\end{split}
+\end{equation}
+
+\paragraph*{Example: Restaurant ratings}
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+ID & Sentence & Class \\
+\hline
+1& The burger is \textbf{tasteless} & \\
+  & and \textbf{slow} service        & Bad\\
+2& \textbf{slow} serving time and & \\
+ & everything is \textbf{horrible} & Bad\\
+3& Restaurant is near MRT, & \\
+ & serves \textbf{delicious} burgers & Good\\
+4& \textbf{love} the burger here, & \\
+ & \textbf{delicious} and filling & Good\\
+\hline
+5& \textbf{love} this place, \textbf{delicious} & \\
+ & burgers but \textbf{slow} service & ?\\
+\hline
+\end{tabular}
+\end{center}
+Where classes $C = \{Bad\,,\,Good\}$, and words $W = \{tasteless, slow, horrible, delicious, love\}$.
+\begin{equation}
+	P(c) = 
+	\begin{cases}
+      \frac{2}{4}, & c = Bad \\
+      \frac{2}{4}, & c = Good
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+P(love\,|\,Good) = \frac{count(love\,,\,Good)}{\sum_{w_j\in W}count(w_j\,,\,Good)} = \frac{1}{3}\\
+P(delicious\,|\,Good) = \frac{count(delicious\,,\,Good)}{\sum_{w_j\in W}count(w_j\,,\,Good)} = \frac{2}{3}\\
+\end{split}
+\end{equation}
+
+\textbf{* TODO: CHECK THIS}
+\begin{equation}
+\begin{split}
+P(Good\,|\,{love, delicious}) = P(Good)\prod_{w_j\in W}P(w_j\,|\,Good)\\
+= P(Good)\cdot P(love\,|\,Good)\cdot P(delicious\,|\,Good)\\
+= \frac{2}{4}\times\frac{1}{3}\times\frac{2}{3} = \frac{1}{9}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+P(tasteless\,|\,Bad) = \frac{count(tasteless\,,\,Bad)}{\sum_{w_j\in W}count(w_j\,,\,Bad)} = \frac{1}{4}\\
+P(slow\,|\,Bad) = \frac{count(slow\,,\,Bad)}{\sum_{w_j\in W}count(w_j\,,\,Bad)} = \frac{2}{4}\\
+P(horrible\,|\,Bad) = \frac{count(horrible\,,\,Bad)}{\sum_{w_j\in W}count(w_j\,,\,Bad)} = \frac{1}{4}
+\end{split}
+\end{equation}
+
+\textbf{* TODO: INCOMPLETE}
+\begin{equation}
+\begin{split}
+P(Bad\,|\,{love, delicious}) = P(Bad)\prod_{w_j\in W}P(w_j\,|\,Bad)\\
+= P(Bad)\cdot P(love\,|\,Bad)\cdot P(delicious\,|\,Bad)\\
+= \frac{2}{4}\times\frac{1}{3}\times\frac{2}{3} = \frac{1}{9}
+\end{split}
+\end{equation}
+
+% \section{Evaluation Methodologies \& Metrics}
+% \section{Lab: Naive Bayes}
+% \section{Data Visualization}
+% \section{Lab: Visualization}
+% \section{Feature Vectors}
+% \section{Time Series Analysis}
+% \section{Lab: Time Series Mining}
+% \section{Clustering \& Community Detection}
+% \section{Community Detection}
+% \section{Deep Learning}
+% \section{Lab: Multi-Layer Perceptrons}
+% \section{Sentiment Analysis}
+% \section{Lab: Word2Vec}
+% \section{Convolutional Neural Networks}
+% \section{Lab: Convolutional Neural Networks}
+% \section{Temporal Sequences \& Memory Models}
+% \section{Lab: RNN \& LSTM}
+
+
+
+\end{document}

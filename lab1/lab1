@@ -1,0 +1,44 @@
+Joel Huang 1002530
+
+1. Download the data.csv file 
+
+ok
+
+2.How many words are there in the file? 
+
+wc -w data.csv 
+60425 data.csv
+
+3.Find the record of funds that cost exactly ‘8898’ and print out two lines below as well. 
+
+grep -A 2 8898 data.csv 
+2011,D,"Electricity, Gas, Water and Waste Services",h_200+,Rolling mean employees,8898,COUNT
+2011,D,"Electricity, Gas, Water and Waste Services",h_200+,Salaries and wages paid,648,DOLLARS(millions)
+2011,D,"Electricity, Gas, Water and Waste Services",h_200+,"Sales, government funding, grants and subsidies",10500,DOLLARS(millions)
+
+4.Replace all instances of , by ;
+
+sed -s 's/,/;/g' data.csv > newdata.csv
+tail -n 5 newdata.csv
+
+2017;all;All Industries;j_Grand_Total;Total income;644159;DOLLARS(millions)
+2017;all;All Industries;j_Grand_Total;Total expenditure;560665;DOLLARS(millions)
+2017;all;All Industries;j_Grand_Total;Operating profit before tax;78054;DOLLARS(millions)
+2017;all;All Industries;j_Grand_Total;Total assets;1968716;DOLLARS(millions)
+2017;all;All Industries;j_Grand_Total;Fixed tangible assets;458928;DOLLARS(millions)
+
+5.Show the first 7 lines of the file
+
+head -n 7 data.csv 
+year,industry_code_ANZSIC,industry_name_ANZSIC,rme_size_grp,variable,value,unit
+2011,A,"Agriculture, Forestry and Fishing",a_0,Activity unit,46134,COUNT
+2011,A,"Agriculture, Forestry and Fishing",a_0,Rolling mean employees,0,COUNT
+2011,A,"Agriculture, Forestry and Fishing",a_0,Salaries and wages paid,279,DOLLARS(millions)
+2011,A,"Agriculture, Forestry and Fishing",a_0,"Sales, government funding, grants and subsidies",8187,DOLLARS(millions)
+2011,A,"Agriculture, Forestry and Fishing",a_0,Total income,8866,DOLLARS(millions)
+2011,A,"Agriculture, Forestry and Fishing",a_0,Total expenditure,7618,DOLLARS(millions)
+
+6.Count the number of unique lines in the file
+
+uniq -u data.csv | wc -l
+10837
