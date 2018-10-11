@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.23)  25 SEP 2018 12:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.23)  8 OCT 2018 12:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/joel/Desktop/cds/tex/cds.tex
-(/home/joel/Desktop/cds/tex/cds.tex
+**/home/joel/Desktop/computational-data-science/tex/cds.tex
+(/home/joel/Desktop/computational-data-science/tex/cds.tex
 LaTeX2e <2018-04-01> patch level 5
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -258,22 +258,34 @@ Overfull \hbox (5.79007pt too wide) detected at line 215
 []
  []
 
-[2] [3
+[2]
+! You can't use `math shift character $' after \divide.
+l.250 Ratio comparison & $\times,\,\divide$
+                                            & $2\times(value)$ \\
+? 
+! Emergency stop.
+l.250 Ratio comparison & $\times,\,\divide$
+                                            & $2\times(value)$ \\
+End of file on the terminal!
 
-] (./cds.aux) ) 
+ 
 Here is how much of TeX's memory you used:
- 3985 strings out of 494587
- 50967 string characters out of 6177424
+ 3983 strings out of 494587
+ 51020 string characters out of 6177424
  351316 words of memory out of 5000000
  7603 multiletter control sequences out of 15000+600000
  12277 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 32i,16n,49p,360b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
+ 32i,16n,49p,383b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
+!
+output PDF file produced!
+200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
+91
+ 32i,16n,49p,383b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
+></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mmi5.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
 i7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
 .pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
@@ -281,11 +293,12 @@ fb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
 usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
-/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on cds.pdf (3 pages, 164348 bytes).
+/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
+local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on cds.pdf (4 pages, 185797 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 73 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -235,7 +235,59 @@ P(Bad\,|\,{love, delicious}) = P(Bad)\prod_{w_j\in W}P(w_j\,|\,Bad)\\
 % \section{Lab: Naive Bayes}
 % \section{Data Visualization}
 % \section{Lab: Visualization}
-% \section{Feature Vectors}
+\section{Feature Vectors}
+A feature is an individual, measurable property, or characteristic, of a phenomenon being observed.
+
+	\subsection*{Properties of features}
+		We can compare features based on their properties:
+		\begin{center}
+		\begin{tabular}{|l|c|c|} 
+		\hline
+		Property & Operator & Example\\
+		\hline
+		1. Distinctness$^*$& $=,\,\neq$ & cat $\neq$ dog\\
+		2. Order of variables& $<,\,>,\,\leq,\,\geq$ & A+ $>$ B\\
+		3. Value comparison & $+,\,-$ & $+3^{\circ}\mathrm{C}$ difference\\
+		4. Ratio comparison & $\times,\,\div $ & $A = 2\times B$ \\
+		\hline
+		\end{tabular}
+		\end{center}
+		\textsuperscript{*All features are distinct}
+
+	\subsection*{Classes of features}
+		Features may be binary, discrete, or continuous. In addition, they can be classified based on their properties. We can combine properties to give useful classes of features.
+
+		\begin{center}
+		\begin{tabular}{|c|c|c|} 
+		\hline
+		Class & Properties & Example\\
+		\hline
+		Nominal & $1$ & Eye colors, postal codes\\
+		Ordinal & $1,\,2$ & Grades, race results\\
+		Interval & $1,\,2,\,3$ & Dates, temperatures\\
+		Ratio & All & Distance, time\\
+		\hline
+		\end{tabular}
+		\end{center}
+
+\subsection*{Feature Engineering}
+Feature engineering methods include aggregation, sampling, dimensionality reduction, feature subset selection, feature creation, discretization and binarization. In order to do this, we need to identify and solve the following problems when dealing with data.
+
+	\subsubsection*{Curse of dimensionality and Sparsity}
+		When dimensionality increases, the volume of the space increases so fast that the available data become sparse. This sparsity is problematic for any method that requires statistical significance. In order to obtain a statistically sound and reliable result, the amount of data needed to support the result often grows exponentially with the dimensionality. Also, organizing and searching data often relies on detecting areas where objects form groups with similar properties; in high dimensional data, however, all objects appear to be sparse and dissimilar in many ways, which prevents common data organization strategies from being efficient.
+	\subsubsection*{Resolution and Quality}
+		Patterns in data can depend on the scale of the features. Trends that might not be apparent in high-resolution data might appear in low-resolution data, and vice-versa. Quality of data can be affected by scale, inherent noise, and bad collection and sampling methods.
+	\subsubsection*{Removing noise and Detecting outliers}
+		\textbf{Noise} is the random error (or variance) from inherently noisy observations or phenomena. \textbf{Outliers} are observations that are significantly atypical from most other observations in the dataset.  We want to remove noise, so that our data becomes representative of reality (is this true?), and identify outliers (because the outlier events are \textit{interesting}).
+	\subsubsection*{Missing values}
+		We need to consider the reasons for missing values. For example, if the feature \textit{annual income} is missing for a particular observation, it can be entirely random, or could be explained by another feature, say, \textit{age}, where older adults tend to value privacy, intentionally not disclosing their income, or young children, who do not have annual incomes.\\
+		\\
+		How do we deal with missing values? Based on the reasons we accept for the missing features, we can consider a few courses of action. If observations or features are missing completely at random (MCAR), due to data being randomly lost, we might choose to \textbf{eliminate} them. If the observations are missing in a time series, it might be possible to \textbf{estimate} the missing values. Alternatively, we might choose to \textbf{ignore} the missing value entirely, taking the rest of the observation without the value.
+	\subsubsection*{Duplicate data}
+		Duplicate, or almost duplicate data, has to be taken care of. Heterogeneous sources, or independent collection sites, might produce them when merged into the final dataset. For example, one user can have multiple email addresses. Duplicate data has to be cleaned before the dataset can be used.
+	\subsubsection*{Wrong data}
+		Features might be outright wrong. We might encounter negative values for weight, age, or entirely wrong addresses. We need to strategically reduce the probability of wrong data, by restricting user input values, input range, and automatic correction based on other features.
+
 % \section{Time Series Analysis}
 % \section{Lab: Time Series Mining}
 % \section{Clustering \& Community Detection}
