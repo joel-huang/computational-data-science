@@ -290,7 +290,54 @@ Feature engineering methods include aggregation, sampling, dimensionality reduct
 
 % \section{Time Series Analysis}
 % \section{Lab: Time Series Mining}
-% \section{Clustering \& Community Detection}
+\section{Clustering \& Community Detection}
+\subsection*{Associations}
+Associations are useful to determine general trends in the database, with applications in \textbf{market basket analysis}. An itemset is a collection of one or more items. For a given transaction database $T$, we try to find interesting implications,
+\begin{equation}
+	X\rightarrow Y,
+\end{equation}
+given $X,\,Y \subset I$, where $I$ is the itemset, and $X\,\cap\,Y = \varnothing$ ($X$ and $Y$ are mutually exclusive). For example, we might want to find and test the association rule $\{\,bread,\,butter\,\} \rightarrow \{\,milk\,\}$. This is the implication that a purchase of milk will occur together with the purchase of bread and butter. We can score these association rules based on the frequencies and combinations of the items.\\
+
+\textbf{Support count} ($\sigma$), counts how many times the full itemset appears. The entire itemset has to be present in the transaction.\\
+
+\textbf{Support} ($s$), is the fraction of transactions that contain an itemset. This is simply calculated by:
+\begin{equation}
+	s(\{i_1, \ldots, i_n\}) = \frac{\sigma(\{i_1, \ldots, i_n\})}{|\,T\,|}
+\end{equation}
+
+\textbf{Frequent itemsets} have a support value $\sigma \geq minsup$ ($minsup$ is a minimum support threshold we set to consider an itemset as frequent or not).
+
+\subsection*{Scoring Association Rules}
+We need to find \textbf{association rules} of the form:
+\begin{equation}
+	X=\{x_1, \ldots, x_n\} \rightarrow Y=\{y_1, \ldots, y_n\}
+\end{equation}and we need to compare them to see if the relationships are strong. We introduce two metrics to score the rules. The \textbf{support} $\sigma$, of an association rule is the fraction of transactions that contain both itemsets $X$ and $Y$, and \textbf{confidence} $c$, measures how often items in $Y$ appear when transactions contain $X$.
+\begin{equation}
+	\sigma = \frac{\sigma(X\,\cup\,Y)}{|\,T\,|}
+\end{equation}
+\begin{equation}
+	c = \frac{\sigma(X\,\cup\,Y)}{\sigma(x)}
+\end{equation}
+
+\subsection*{Mining Association Rules}
+The computational objective of mining for these rules is, to find all rules in $T$, with support $\sigma \geq minsup$, and $c \geq minconf$.
+
+\subsubsection*{Brute force approach}
+The brute force approach will be computationally prohibitive. We need to list all possible rules, compute $\sigma$ and $c$ for each rule, and prune the rules that fail the \textit{minsup} and \textit{minconf} thresholds. In a database of $d$ items, there are up to $2^d$ possible itemsets, and for each k-itemset of interest in $T$, the brute force approach costs $O(2^k)$, with $2^k - 2$ possible rules.
+
+\subsubsection*{Apriori algorithm}
+\begin{lstlisting}
+Big Idea: Any subsets of a frequent itemset are also frequent itemsets.
+\end{lstlisting}
+Motivated by massive amounts of sales data with progress in bar-code technology circa 1994, Agrawal \& Srikant from IBM Research presented the Apriori algorithm in \textit{Fast Algorithms for Mining Association Rules}. The Apriori algorithm uses a bottom-up approach. Frequent subsets are extended one item at a time (candidate generation), and groups of candidates are tested against the data. The algorithm terminates when no further successful extensions are found. Apriori is historically significant but inefficient: the algorithm scans the database many times, while assuming its permanence in memory. Later algorithms try to identify maximal itemsets without enumerating their subsets.\\
+\\
+The Apriori principle, stating that subsets of frequent itemsets are also frequent itemsets, holds because of the \textbf{anti-monotone} property, 
+\begin{equation}
+	X \subseteq Y \Rightarrow s(X) \geq s(\,Y).
+\end{equation}
+This means that the support of an itemset never exceeds the support of its subsets. Therefore, if we determine an itemset to be infrequent, we can automatically prune all parent sets (they are infrequent as well!).\\
+\\
+Since we know the structure of the tree, we can first conduct a breadth-first search to find all 1-itemsets, then 2-itemsets, etc. 	
 % \section{Community Detection}
 % \section{Deep Learning}
 % \section{Lab: Multi-Layer Perceptrons}

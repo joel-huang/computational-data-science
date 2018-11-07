@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.23)  8 OCT 2018 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.23)  19 OCT 2018 01:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -259,33 +259,88 @@ Overfull \hbox (5.79007pt too wide) detected at line 215
  []
 
 [2]
-! You can't use `math shift character $' after \divide.
-l.250 Ratio comparison & $\times,\,\divide$
-                                            & $2\times(value)$ \\
-? 
-! Emergency stop.
-l.250 Ratio comparison & $\times,\,\divide$
-                                            & $2\times(value)$ \\
-End of file on the terminal!
+Overfull \hbox (10.60878pt too wide) in paragraph at lines 244--254
+ [] 
+ []
 
- 
+
+Underfull \hbox (badness 1852) in paragraph at lines 274--275
+\OT1/cmr/m/n/10 Feature en-gi-neer-ing meth-ods in-clude ag-gre-ga-tion,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--286
+
+ []
+
+[3]
+Underfull \hbox (badness 1331) in paragraph at lines 298--300
+\OT1/cmr/m/n/10 given $\OML/cmm/m/it/10 X;  Y \OMS/cmsy/m/n/10 ^^Z \OML/cmm/m/i
+t/10 I$\OT1/cmr/m/n/10 , where $\OML/cmm/m/it/10 I$ \OT1/cmr/m/n/10 is the item
+-set, and
+ []
+
+
+Underfull \hbox (badness 1014) in paragraph at lines 298--300
+\OT1/cmr/m/n/10 to-gether with the pur-chase of bread and but-ter.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
+
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 332--335
+\OT1/cmr/m/n/10 at a time (can-di-date gen-er-a-tion), and groups of
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 332--335
+\OT1/cmr/m/n/10 ter-mi-nates when no fur-ther suc-cess-ful ex-ten-sions
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--335
+
+ []
+
+
+Underfull \hbox (badness 4805) in paragraph at lines 332--335
+\OT1/cmr/m/n/10 The Apri-ori prin-ci-ple, stat-ing that sub-sets of
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 337--350
+
+ []
+
+
+Underfull \hbox (badness 3209) in paragraph at lines 337--350
+\OT1/cmr/m/n/10 first con-duct a breadth-first search to find all
+ []
+
+[5
+
+] (./cds.aux) ) 
 Here is how much of TeX's memory you used:
- 3983 strings out of 494587
- 51020 string characters out of 6177424
+ 3996 strings out of 494587
+ 51149 string characters out of 6177424
  351316 words of memory out of 5000000
- 7603 multiletter control sequences out of 15000+600000
- 12277 words of font info for 48 fonts, out of 8000000 for 9000
+ 7613 multiletter control sequences out of 15000+600000
+ 12623 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 32i,16n,49p,383b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-!
-output PDF file produced!
-200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-91
- 32i,16n,49p,383b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
+ 32i,16n,49p,770b,1492s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmex10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mmi5.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
 i7.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
 .pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
@@ -294,11 +349,12 @@ fb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
 usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
 /local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
-local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on cds.pdf (4 pages, 185797 bytes).
+local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/lo
+cal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on cds.pdf (5 pages, 198964 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 80 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
