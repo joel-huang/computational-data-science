@@ -30,7 +30,8 @@
 }
 
 \title{
-	Computational Data Science
+	Computational Data Science\\
+	Fall 2018
 }
 
 \author{Joel Huang}
@@ -42,9 +43,19 @@
 
 \section{Entity Relationship Diagrams \& SQL}
 
+\subsection*{Database Management Systems}
+Database Management Systems (DBMS) provide structured, efficient, and reliable storage and multi-user access to massive amounts of persistent data. To model database requirements, we need to first consider \textbf{conceptual design}: determine the entities and relationships, what data to store about them, and any other constraints that we want to impose. These will be used to construct the \textbf{entity relationship model}.
+
+\subsection*{Entity-Relationship Models}
+\begin{itemize}
+	\item \textbf{Entities} are real-world objects, represented using \textit{rectangles}.
+	\item \textbf{Attributes} of entities are represented using \textit{ovals}. They can have \textbf{domains}, which describe the data type of the attribute.
+	\item \textbf{Relationships} are associations among multiple entities, represented using \textit{lozenges/diamonds}. A one-to-two relationship may be called a ternary relationship set. Relationships can also contain attributes, and mapping constraints (e.g. many-to-many, etc.).
+	\item The relationship \textbf{cardinality} is a measure of how much an entity participates in a relationship. A cardinality of $(1,x)$ implies mandatory participation of at least $1$, up to $x$ times, while $(0,y)$ implies optional participation of up to $y$ times.
+\end{itemize}
 
 
-\section{Lab: Data Handling in Unix}
+\section{Data Handling in Unix}
 
 \subsection*{Previewing data}
 Raw data can be fairly large. We might want to examine the dataset's structure without opening it in a special program or text editor, which could take a long time and large amounts of memory.
@@ -88,14 +99,33 @@ Use \lstinline{head} or \lstinline{tail} to preview the head or tail of the data
 $   Matches the end of the line.
 \   Escapes the following character. Since . matches any character, to match a literal period you would need to use \..
 \end{lstlisting}
-%\subsection*{Replacing}
+
+\subsection*{Replacing}
 %\subsection*{Previewing}
 
 
 
 
 \section{Big Data, Hadoop, \& MapReduce}
-\section{Lab: MapReduce \& Hadoop}
+\subsection*{Big Data}
+Big data involves challenges in raw \textbf{volume} of data, \textbf{variety} of sources, \textbf{velocity} of generation, \textbf{veracity} (trustworthiness) of data, and \textbf{value}.
+
+\subsection*{Hadoop}
+Most real world data is semi-structured. Hadoop allows storing and manipulation of raw data to be reformatted later. This can be advantageous because pre-cleaned data can carry information that can be used in the future. Text, numerical data, and files can all be mixed.
+
+\subsection*{CAP Theorem for Distributed Storage}
+It is impossible for a distributed data store to simultaneously provide more than two of the following:
+\begin{enumerate}
+	\item \textbf{Consistency}, that every read operation will return the most recent write/an error,
+	\item \textbf{Availability}, that every request receives a non-error response (can be an outdated response),
+	\item \textbf{Partition tolerance}, that the system functions despite a communications break (drop or delay) between nodes.
+\end{enumerate}
+Therefore, the possible compromises are:
+\begin{itemize}
+	\item \textbf{C+A}, a single megacluster with nodes that always maintain contact, but will lose sync if there's a partition.
+	\item \textbf{C+P}, where consistency is ensured throughout the network, but is not available when sync has not completed.
+	\item \textbf{A+P}, where data is always returned despite a partition, but might not be accurate.
+\end{itemize}
 
 \subsection*{Big Idea: Mappers \& Reducers}
 \section{Counting Relative Frequencies}
@@ -112,7 +142,7 @@ To prevent overfitting, use Random forests-ensemble approach that aggregates dec
 Assumption: Conditional independence
 \end{lstlisting}
 \begin{equation}
-	P(x_1, x_2, \mathellipsis, x_n\,|\,Y) = P(x_1\,|\,Y)\cdot P(x_2\,|\,Y)\cdot\mathellipsis\
+	P(Y\,|\,x_1, x_2, \mathellipsis, x_n) = P(Y\,|\,x_1)\cdot P(Y\,|\,x_2)\cdot\mathellipsis\
 \end{equation}
 We are trying to find the most likely class given an observation
 Maximum
@@ -205,7 +235,6 @@ P(delicious\,|\,Good) = \frac{count(delicious\,,\,Good)}{\sum_{w_j\in W}count(w_
 \end{split}
 \end{equation}
 
-\textbf{* TODO: CHECK THIS}
 \begin{equation}
 \begin{split}
 P(Good\,|\,{love, delicious}) = P(Good)\prod_{w_j\in W}P(w_j\,|\,Good)\\
@@ -222,14 +251,19 @@ P(horrible\,|\,Bad) = \frac{count(horrible\,,\,Bad)}{\sum_{w_j\in W}count(w_j\,,
 \end{split}
 \end{equation}
 
-\textbf{* TODO: INCOMPLETE}
+Let's say we have the sentence $\{love, delicious\}$, and we want to find out the probability that its class label is $Bad$.
+
 \begin{equation}
 \begin{split}
 P(Bad\,|\,{love, delicious}) = P(Bad)\prod_{w_j\in W}P(w_j\,|\,Bad)\\
 = P(Bad)\cdot P(love\,|\,Bad)\cdot P(delicious\,|\,Bad)\\
-= \frac{2}{4}\times\frac{1}{3}\times\frac{2}{3} = \frac{1}{9}
+= \frac{2}{4}\times\frac{0}{4}\times\frac{0}{4} = 0
 \end{split}
 \end{equation}
+
+Neither $love$ nor $delicious$ has appeared with the class $Bad$ before. Therefore, we need smoothing to account for unseen words for specific classes.
+
+\textbf{LAPLACE SMOOTHING HERE. THEN FIX THE 0.}
 
 % \section{Evaluation Methodologies \& Metrics}
 % \section{Lab: Naive Bayes}
